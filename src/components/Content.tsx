@@ -1,14 +1,5 @@
 import { MovieCard } from "./MovieCard";
-
-interface MovieProps {
-  Title: string;
-  Poster: string;
-  Ratings: Array<{
-    Source: string;
-    Value: string;
-  }>;
-  Runtime: string;
-}
+import { GenreResponseProps, MovieProps } from "../App";
 
 interface ContentProps {
   movies: MovieProps[];

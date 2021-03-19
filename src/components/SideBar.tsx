@@ -1,10 +1,5 @@
 import { Button } from "./Button";
-
-interface GenreResponseProps {
-  id: number;
-  name: "action" | "comedy" | "documentary" | "drama" | "horror" | "family";
-  title: string;
-}
+import { GenreResponseProps } from "../App";
 
 interface SideBarProps {
   genres: GenreResponseProps[];

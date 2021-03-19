@@ -13,13 +13,13 @@ import "./styles/global.scss";
 import "./styles/sidebar.scss";
 import "./styles/content.scss";
 
-interface GenreResponseProps {
+export interface GenreResponseProps {
   id: number;
   name: "action" | "comedy" | "documentary" | "drama" | "horror" | "family";
   title: string;
 }
 
-interface MovieProps {
+export interface MovieProps {
   Title: string;
   Poster: string;
   Ratings: Array<{
@@ -39,7 +39,6 @@ export function App() {
     {} as GenreResponseProps
   );
 
-  // fetching all genres
   useEffect(() => {
     api.get<GenreResponseProps[]>("genres").then((response) => {
       setGenres(response.data);
@@ -47,14 +46,12 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    // fetching all movies with a specific genreId every time the selectedGenre changes in the sidebar
     api
       .get<MovieProps[]>(`movies/?Genre_id=${selectedGenreId}`)
       .then((response) => {
         setMovies(response.data);
       });
 
-    // changes the selectedGenre dinamically according to the genre selected in the sidebar
     api
       .get<GenreResponseProps>(`genres/${selectedGenreId}`)
       .then((response) => {
@@ -62,7 +59,6 @@ export function App() {
       });
   }, [selectedGenreId]);
 
-  // changing the selectedGenreId wich runs the useEffect responsible for fetching all the movies for that especific genreId
   function handleClickButton(id: number) {
     setSelectedGenreId(id);
   }
